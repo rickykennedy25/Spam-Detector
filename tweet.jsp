@@ -1,3 +1,4 @@
+<%@ page import="java.io.File" %>
 <%@ page import="java.text.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.ArrayList" %>
@@ -27,26 +28,25 @@ public class Tweet {
 public ArrayList<Tweet> importTweets() {
 	ArrayList<Tweet> tweets = new ArrayList<>();
 
-	tweets.add(new Tweet(
-		"Ini tweet pendek (&lt;40 char).",
-		"Orang 1",
-		"//via.placeholder.com/100x100",
-		"#"
-	));
+    try {
+      File file = new File("getData/hasil.txt");
+      Scanner scanner = new Scanner(file);
+      while (scanner.hasNextLine()) {
+        String link = scanner.nextLine();
+        String username = scanner.nextLine();
+        String tweet = scanner.nextLine();
+        String profpic = scanner.nextLine();
 
-	tweets.add(new Tweet(
-		"Ini tweet agak panjangan, tapi masih medium (&lt;80 char).",
-		"Orang 2",
-		"//via.placeholder.com/100x100",
-		"#"
-	));
-
-	tweets.add(new Tweet(
-		"Ini tweet paling panjang, ditampilinnya juga kecil. Tweet bisa sampe 2 baris, jadi tetep muat.",
-		"Orang 1",
-		"//via.placeholder.com/100x100",
-		"#"
-	));
+        tweets.add(new Tweet(
+			tweet,
+			username,
+			profpic,
+			link
+		));
+      }
+    } catch (Exception e) {
+      //
+    }
 
 	return tweets;
 }
