@@ -3,6 +3,8 @@
 <%@ page import="java.util.*" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javafx.util.Pair" %>
+<%@ include file="search/KMP.jsp" %>
+<%@ include file="search/BoyerMoore.jsp" %>
 <%@ include file="tweet.jsp" %>
 
 <%
@@ -19,8 +21,19 @@
 	"result": [
 		<%
 		for (Tweet tweet : tweets) {
-	    	KMP kmp = new KMP(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
-	    	ArrayList<Pair<Integer,Integer>> results = kmp.getResult();
+	    	ArrayList<Pair<Integer,Integer>> results;
+
+			if (request.getParameter("algo").equals("regex")) {
+				KMP kmp = new KMP(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
+				results = kmp.getResult();
+			} else if (request.getParameter("algo").equals("boyer")) {
+				BoyerMoore boyerMoore = new BoyerMoore(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
+				results = boyerMoore.getResult();
+			} else /* request.getParameter("algo").equals("kmp") */ {
+				KMP kmp = new KMP(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
+				results = kmp.getResult();
+			}
+	    	
 	    	if (results.size() > 0) {
 	    		if (count > 0) { out.println(","); }
 	    		count++;

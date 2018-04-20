@@ -1,16 +1,9 @@
 <%@ page session="false" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-<%
-java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy");
-request.setAttribute("year", sdf.format(new java.util.Date()));
-request.setAttribute("tomcatUrl", "http://tomcat.apache.org/");
-request.setAttribute("tomcatDocUrl", "/docs/");
-request.setAttribute("tomcatExamplesUrl", "/examples/");
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title><%=request.getServletContext().getServerInfo() %></title>
+    <title>SpamDetector</title>
     <link href="https://cdn.iconscout.com/public/images/icon/free/png-256/s-character-alphabet-letter-3076c5c4f2f01a4b-256x256.png" rel="icon" type="image/jpeg" />
     <link href="https://cdn.iconscout.com/public/images/icon/free/png-256/s-character-alphabet-letter-3076c5c4f2f01a4b-256x256.png" rel="shortcut icon" type="image/jpeg" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">

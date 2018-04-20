@@ -64,6 +64,14 @@ input::placeholder {
     color: #ccc;
 }
 
+input#keyword.error {
+    border-color: #f00;
+}
+
+input#keyword.error::placeholder {
+    color: #f99;
+}
+
 p {
     margin: 20px 0;
 }
@@ -74,11 +82,19 @@ button {
     border-radius: 8px;
     margin: 0 4px;
 
-    background-color: #000;
+    /*background-color: #000;*/
     color: white;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
 
     cursor: pointer;
+}
+
+button.search.active {
+    background-color: #000;
+}
+
+button.search:not(.active) {
+    background-color: #888;
 }
 
 .media {
