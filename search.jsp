@@ -11,13 +11,13 @@
 	response.setContentType("application/json");
 	response.setHeader("Content-Disposition", "inline");
 
-    ArrayList<Tweet> tweets = importTweets();
+    ArrayList<Tweet> tweets = importTweets(request.getServletContext().getRealPath("/"));
     int count = 0;
 %>
 
 {
+	"all": "<%= tweets.size() %>",
 	"keyword": "<%= request.getParameter("keyword") %>",
-	"count": 3,
 	"result": [
 		<%
 		for (Tweet tweet : tweets) {

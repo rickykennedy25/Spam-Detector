@@ -25,28 +25,30 @@ public class Tweet {
 	public String getLink() { return this.link; }
 }
 
-public ArrayList<Tweet> importTweets() {
+public ArrayList<Tweet> importTweets(String path) {
 	ArrayList<Tweet> tweets = new ArrayList<>();
 
     try {
-      File file = new File("getData/hasil.txt");
-      Scanner scanner = new Scanner(file);
-      while (scanner.hasNextLine()) {
-        String link = scanner.nextLine();
-        String username = scanner.nextLine();
-        String tweet = scanner.nextLine();
-        String profpic = scanner.nextLine();
+		File file = new File(path + "getData/hasil.txt");
+		Scanner scanner = new Scanner(file);
+		while (scanner.hasNextLine()) {
+			String link = scanner.nextLine();
+			String username = scanner.nextLine();
+			String tweet = scanner.nextLine();
+			String profpic = scanner.nextLine();
 
-        tweets.add(new Tweet(
-			tweet,
-			username,
-			profpic,
-			link
-		));
-      }
+			tweets.add(new Tweet(
+				tweet,
+				username,
+				profpic,
+				link
+			));
+		}
     } catch (Exception e) {
-      //
-    }
+    	//
+    } finally {
+    	//
+	}
 
 	return tweets;
 }
