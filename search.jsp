@@ -5,6 +5,7 @@
 <%@ page import="javafx.util.Pair" %>
 <%@ include file="search/KMP.jsp" %>
 <%@ include file="search/BoyerMoore.jsp" %>
+<%@ include file="search/Regex.jsp" %>
 <%@ include file="tweet.jsp" %>
 
 <%
@@ -23,14 +24,15 @@
 		for (Tweet tweet : tweets) {
 	    	ArrayList<Pair<Integer,Integer>> results;
 
+	    	String text = tweet.getText().toLowerCase().replace("\\n", "\n").replace("\\\"", "\"");
 			if (request.getParameter("algo").equals("regex")) {
-				KMP kmp = new KMP(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
-				results = kmp.getResult();
+				Regex regex = new Regex(text, request.getParameter("keyword").toLowerCase());
+				results = regex.getResult();
 			} else if (request.getParameter("algo").equals("boyer")) {
-				BoyerMoore boyerMoore = new BoyerMoore(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
+				BoyerMoore boyerMoore = new BoyerMoore(text, request.getParameter("keyword").toLowerCase());
 				results = boyerMoore.getResult();
 			} else /* request.getParameter("algo").equals("kmp") */ {
-				KMP kmp = new KMP(tweet.getText().toLowerCase(), request.getParameter("keyword").toLowerCase());
+				KMP kmp = new KMP(text, request.getParameter("keyword").toLowerCase());
 				results = kmp.getResult();
 			}
 	    	
