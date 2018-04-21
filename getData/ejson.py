@@ -5,7 +5,7 @@ def sanitize(text):
     text = text.replace("\"", "\\\"")
     return text
 
-fo = open("tweets1.txt","r")
+fo = open("tweets3.txt","r")
 
 hasil = json.load(fo)
 results = hasil
